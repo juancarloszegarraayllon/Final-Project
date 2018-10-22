@@ -1,0 +1,91 @@
+<template name="poll">
+<div class="container">
+<div class="row pollCard">
+  <div class="col s12 white">
+    <div class="row">
+      <div class="card col s12 ">
+            <div class="row">
+             <ul class="col s12 m12 l12 center-align horizontal">
+                {{#if currentUser}}
+                    <li style="display: inline;"><div class="btn horizontal like-poll" data-id="{{poll._id}}"><i class="fa fa-thumbs-up" aria-hidden="true"></i>({{poll.likes}})</div>
+                    </li>
+                    <li style="display: inline;"><div class="btn horizontal dislike-poll" data-id="{{poll._id}}"><i class="fa fa-thumbs-down" aria-hidden="true"></i>({{poll.dislikes}})</div>
+                    </li>
+                    <li style="display: inline;"><div class="horizontal btn fav-poll" data-id="{{poll._id}}"><i class="material-icons">favorite </i>({{poll.fav}})</div></li>
+                {{/if}}
+                <li style="display: inline;"><a class="btn" href="https://www.pinterest.com/pin/create/button/"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
+
+                <!-- <li style="display: inline;"><a class="btn"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li> -->
+
+                <li style="display: inline;"><a class="twitter-share-button social-buttons btn" href="https://twitter.com/intent/tweet?&text=Check%20out%20this%20poll%20on%20PollyThinks&url=https%3A%2F%2Fpollythinks.herokuapp.com/poll/{{poll._id}}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                </li>
+
+                <li style="display: inline;"><a class="fb-xfbml-parse-ignore btn btn-success clearfix" target="_blank" data-id="{{poll._id}}" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fpollythinks.herokuapp.com/poll/{{poll._id}}%2F&amp;src=sdkpreparse"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+              </ul>
+              </div>
+            </div>
+            </div>
+<div class="row">
+      {{#if poll.usersVoteStatus}}
+        <!-- Pie Chart is called here to render it on the browser -->
+        <div class="col s12 pull-s2 l7 m8">
+               {{>pieChart id=poll._id }}
+        </div>
+        <!-- End If user has voted -->
+      {{else}}
+        <div class="col s5 pollClicked">
+          {{#each poll.choices}}
+            <div class="choices col s12 l9">
+                <div id="{{ poll._id }}" class="voteButton btn"  choice-index="{{@index}}">{{text}}
+                </div>
+            </div>
+          {{/each}}
+        </div>
+      <!-- End If user has NOT voted -->
+      {{/if}}
+    <!-- Comments Section -->
+    <div class="col s12 l5">
+      <div class="comment-section">
+        {{#unless poll.comments}}
+          <div class="chip orange">No Recent Comments</div>
+        {{else}}
+          <div class="chip orange">Recent Comments</div>
+            {{#each poll.comments}}
+              <span class="commentName">{{poll.userId}}</span>
+               <p class="comment">{{comment}}</p>
+            {{/each}}
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+  
+<!-- </div> -->
+
+            <!-- add comments -->
+<div class='row'>
+  <div class="submitComment light-green darken-1 col l12 s12 m12">
+    <br>
+    <div class="row">
+      <form class="comment-form" data-poll-id="{{poll._id}}">
+        <div class="commentInputSection col s5 l8">
+            <textarea id="comments" name="comment" placeholder="Write comments here..."></textarea>
+        </div>
+        <div class="col s7 l4 commentInputSection">
+          <button id="commentButton" class="btn waves-effect waves-light green">Comment</button>
+        </div>
+      </form>
+      </div>
+  </div>
+</div>
+</div>
+
+<!-- If current user is logged in, show like icons -->
+<!-- Show delete button if current user is the creator or Admin-->
+<!-- {{#if isAdminOrCreator this}}
+<div class="col s2 btn red delete-poll" data-id="{{poll._id}}">
+<i class="material-icons">delete</i>
+</div>
+{{/if}} -->
+</div>
+</div>
+</template>

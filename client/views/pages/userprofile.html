@@ -1,0 +1,59 @@
+<template name="userdashboard">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="circle">
+                <div class="col s12 l10">
+                    <div class="card-panel white lighten-5 z-depth-1">
+                        <div class="row valign-wrapper">
+                            <div class="col s2">
+
+                                {{#if currentUser.profile.image}}
+                                  <img class="circle responsive-img" src="{{currentUser.profile.image}}">
+                                {{/if}}
+                            </div>
+                            <div class="col s10">
+                                <span class="black-text">
+                                <h4>Welcome!</h4>
+                                <small>Check out below to see how many posts you made so far this year!</small>
+                                <br>
+                                <br>
+                                {{> s3_tester}}
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- chart -->
+            <div class="row">
+                <div class="col m10">
+                    <div class="ct-chart ct-perfect-fourth"></div>
+                        <div class="ct-chart"></div>
+                        <div id="lowerTitle"><small>posts/monthly</small></div>
+                        <script>
+                        new Chartist.Line('.ct-chart', {
+                            labels: ['Jan ', 'Feb ', 'Mar ', 'Apr ', 'May ', 'Jun ', 'Jul ', 'Aug ', 'Sep ', 'Oct ', 'Nov ', 'Dec '],
+                            series: [
+                                [0, 0, 0, 0, 0, 0, 0, 4, 4, 2, 5, 2]
+                            ]
+                        });
+                        </script>
+                 </div>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>    
+    </template>
+
+                                <template name="s3_tester">
+                                    <button class="upload">Upload</button>
+                                    <input type="file" class="file_bag">
+                                    {{#each files}}
+                                    <p>{{percent_uploaded}}</p>
+                                    {{/each}}
+                                </template>

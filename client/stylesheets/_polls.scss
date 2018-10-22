@@ -1,0 +1,26 @@
+.delete-poll,
+.like-poll,
+.dislike-poll,
+.voteButton,
+.fav-poll{
+  i{
+    pointer-events: none;
+  }
+}
+
+.fixed-action-btn{
+  z-index: 2;
+}
+
+.OUT_social-buttons {
+  padding: 0 0 0 20px!important;
+  margin: 20px !important;
+}
+.btn, .btn-large, .btn-flat {
+  padding: 0 1rem;
+  background-color: #40c240;
+}
+
+.fav-poll{
+  color:red;
+}

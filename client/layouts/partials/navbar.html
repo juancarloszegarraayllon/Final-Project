@@ -1,0 +1,94 @@
+<template name="navbar">
+    <div class="navbar-fixed">
+     <nav>
+         <!--dropdown structure-->
+         <ul class="left hide-on-med-and-down">
+            <!--dropdown button-->      
+         <li><img src="/public/Logo.png"></li>
+         </ul>
+     <ul id="sort-collection" class="dropdown-content">
+        <li><a class="sort-collection" data-value="likes" href="#!">Likes</a></li>
+        <li><a class="sort-collection" data-value="dislikes" href="#!">Dislikes</a></li>
+        <li><a class="sort-collection" data-value="createdAt" href="#!">Date</a></li>
+        <li><a class="sort-collection" data-value="commentCount" href="#!">Comments</a></li>
+    </ul>
+    <ul id="sort-order" class="dropdown-content">
+      <li><a href="#!" class="sort-order" data-value="1">Ascending</a></li>
+      <li class="divider"></li>
+      <li><a href="#!" class="sort-order" data-value="-1">Descending</a></li>
+    </ul>
+    <div class="nav-wrapper">
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+                <!--dropdown button-->
+        <li><a class="dropdown-button sort-collection-label" href="#!" data-activates="sort-collection">Sort Results by<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button sort-order-label" href="#!" data-activates="sort-order">Sort Order<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="/pollList">All Study Buddy Results</a></li>
+        {{#if currentUser}}
+        <li><a href="/userprofile">User Dashboard</a></li>
+        {{/if}}
+        <li>
+
+          {{#animate type="jello" delay="200"}}
+            <button data-target="modal1" class="waves-effect waves-light btn green darken-1" id="modalTrigger">What class do you need help with?</button>
+          {{/animate}}
+        </li>
+        
+        {{#if isAdminUser}}
+        <li><a href="/usermgmt">User Management</a></li>
+        {{/if}} 
+        {{#if currentUser}}
+        <li><a href="/sign-out">Sign Out</a></li>
+        {{else}}
+        <li><a href="/sign-in">Sign In</a></li>
+        {{/if}}
+      </ul>
+
+    <ul id="mobile-demo" class="side-nav">
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Sort Results by</a>
+              <div class="collapsible-body" style="">
+                <ul id="sort-collection">
+                  <li><a class="sort-collection" data-value="likes" href="#">Likes</a></li>
+                  <li><a class="sort-collection" data-value="dislikes" href="#">Dislikes</a></li>
+                  <li><a class="sort-collection" data-value="createdAt" href="#">Date</a></li>
+                  <li><a class="sort-collection" data-value="commentCount" href="#!">Comments</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal">Sort Order</a>
+              <div class="collapsible-body" style="">
+                <ul id="sort-order">
+                <li><a href="#!" class="sort-order" data-value="1">Ascending</a></li>
+                <li><a href="#!" class="sort-order" data-value="-1">Descending</a></li>
+                </ul>
+              </div>
+            </li>
+
+        <li class="bold"><a href="/pollList" class="waves-effect waves-teal">All Study Buddy Results</a></li>
+{{#if currentUser}}
+        <li class="bold"><a href="#" class="waves-effect waves-teal">User Dashboard</a></li>
+        {{/if}}
+        <li>
+          {{#animate type="jello" delay="200"}}
+            <button data-target="modal1" class="waves-effect waves-light btn green darken-1" id="modalTrigger">What class do you need help with?</button>
+          {{/animate}}
+        </li>
+        {{#if isAdminUser}}
+        <li class="bold"><a href="/usermgmt" class="waves-effect waves-teal">User Management</a></li>
+        {{/if}} 
+        {{#if currentUser}}
+        <li class="bold"><a href="/sign-out" class="waves-effect waves-teal">Sign Out</a></li>
+        {{else}}
+        <li class="bold"><a href="/sign-in" class="waves-effect waves-teal">Sign In</a></li>
+        {{/if}}
+    </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+{{> newPoll}}
+</template>

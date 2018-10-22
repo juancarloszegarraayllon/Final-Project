@@ -1,0 +1,16 @@
+{
+  "name": "Project3",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "6.18.0",
+    "bcrypt": "^1.0.2",
+    "chartist": "^0.10.1",
+    "meteor-node-stubs": "~0.2.0"
+  },
+  "devDependencies": {
+    "moment": "^2.17.1"
+  }
+}
